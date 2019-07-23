@@ -13,7 +13,9 @@ Introduction
     :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306
     :alt: Build Status
 
-DisplayIO driver for SSD1306 monochrome displays
+DisplayIO driver for SSD1306 monochrome displays. DisplayIO drivers enable terminal output 
+
+For the framebuf based driver see `Adafruit CircuitPython SSD1306 <https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/>`_.
 
 
 Dependencies

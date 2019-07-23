@@ -81,7 +81,7 @@ class SSD1306(displayio.Display):
         if kwargs["height"] == 32:
             init_sequence[25] = 0x02 # patch com configuration
         super().__init__(bus, init_sequence, **kwargs, color_depth=1, grayscale=True,
-                        pixels_in_byte_share_row=False,
-                        set_column_command=0x21, set_row_command=0x22, data_as_commands=True,
-                        set_vertical_scroll=0xd3, brightness_command=0x81,
-                        single_byte_bounds=True)
+                         pixels_in_byte_share_row=False,
+                         set_column_command=0x21, set_row_command=0x22, data_as_commands=True,
+                         set_vertical_scroll=0xd3, brightness_command=0x81,
+                         single_byte_bounds=True)
