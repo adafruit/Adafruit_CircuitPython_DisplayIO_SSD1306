@@ -23,14 +23,18 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
-.. todo:: Add any Learn guide links here. If there are none, then simply delete this todo and leave
-    the toctree above for use later.
+    Monochrome OLED Breakout Guide <https://learn.adafruit.com/monochrome-oled-breakouts>
+    OLED FeatherWing <https://learn.adafruit.com/adafruit-oled-featherwing>
+    Displayio Guide <https://learn.adafruit.com/circuitpython-display-support-using-displayio>
 
 .. toctree::
     :caption: Related Products
 
-.. todo:: Add any product links here. If there are none, then simply delete this todo and leave
-    the toctree above for use later.
+    Monochrome 1.3" 128x64 OLED <https://www.adafruit.com/product/938>
+    Monochrome 128x32 I2C OLED <https://www.adafruit.com/product/931>
+    Monochrome 0.96" 128x64 OLED <https://www.adafruit.com/product/326>
+    Monochrome 128x32 SPI OLED  <https://www.adafruit.com/product/661>
+    Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900> s
 
 .. toctree::
     :caption: Other Links
