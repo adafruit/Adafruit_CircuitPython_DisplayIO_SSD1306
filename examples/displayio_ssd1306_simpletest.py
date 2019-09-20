@@ -12,12 +12,12 @@ import adafruit_displayio_ssd1306
 displayio.release_displays()
 
 spi = board.SPI()
-tft_cs = board.D5
-tft_dc = board.D6
-tft_reset = board.D9
+oled_cs = board.D5
+oled_dc = board.D6
+oled_reset = board.D9
 
-display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs,
-                                 reset=tft_reset, baudrate=1000000)
+display_bus = displayio.FourWire(spi, command=oled_dc, chip_select=oled_cs,
+                                 reset=oled_reset, baudrate=1000000)
 display = adafruit_displayio_ssd1306.SSD1306(display_bus, width=128, height=64)
 
 # Make the display context
