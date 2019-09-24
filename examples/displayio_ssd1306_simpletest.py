@@ -11,15 +11,16 @@ import adafruit_displayio_ssd1306
 
 displayio.release_displays()
 
+oled_reset = board.D9
+
 # Use for I2C
 i2c = board.I2C()
-display_bus = displayio.I2CDisplay(i2c, device_address=0x3c)
+display_bus = displayio.I2CDisplay(i2c, device_address=0x3c, reset=oled_reset)
 
 # Use for SPI
 #spi = board.SPI()
 #oled_cs = board.D5
 #oled_dc = board.D6
-#oled_reset = board.D9
 #display_bus = displayio.FourWire(spi, command=oled_dc, chip_select=oled_cs,
 #                                 reset=oled_reset, baudrate=1000000)
 
