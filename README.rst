@@ -9,8 +9,8 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://travis-ci.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306.svg?branch=master
-    :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306
+.. image:: https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306/workflows/Build%20CI/badge.svg
+    :target: https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306/actions/
     :alt: Build Status
 
 DisplayIO driver for SSD1306 monochrome displays. DisplayIO drivers enable terminal output 
