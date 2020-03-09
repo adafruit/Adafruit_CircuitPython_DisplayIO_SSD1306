@@ -53,12 +53,12 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306
 
 # Sequence from page 19 here: https://cdn-shop.adafruit.com/datasheets/UG-2864HSWEG01+user+guide.pdf
 _INIT_SEQUENCE = (
-    b"\xAE\x00"      # DISPLAY_OFF
+    b"\xAE\x00"  # DISPLAY_OFF
     b"\x20\x01\x00"  # Set memory addressing to horizontal mode.
-    b"\x81\x01\xcf" # set contrast control
-    b"\xA1\x00"      # Column 127 is segment 0
-    b"\xA6\x00"      # Normal display
-    b"\xc8\x00"      # Normal display
+    b"\x81\x01\xcf"  # set contrast control
+    b"\xA1\x00"  # Column 127 is segment 0
+    b"\xA6\x00"  # Normal display
+    b"\xc8\x00"  # Normal display
     b"\xA8\x01\x3f"  # Mux ratio is 1/64
     b"\xd5\x01\x80"  # Set divide ratio
     b"\xd9\x01\xf1"  # Set pre-charge period
@@ -71,17 +71,27 @@ _INIT_SEQUENCE = (
 # pylint: disable=too-few-public-methods
 class SSD1306(displayio.Display):
     """SSD1306 driver"""
+
     def __init__(self, bus, **kwargs):
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
             height = kwargs["width"]
-        init_sequence[16] = height - 1 # patch mux ratio
+        init_sequence[16] = height - 1  # patch mux ratio
         if kwargs["height"] == 32:
-            init_sequence[25] = 0x02 # patch com configuration
-        super().__init__(bus, init_sequence, **kwargs, color_depth=1, grayscale=True,
-                         pixels_in_byte_share_row=False,
-                         set_column_command=0x21, set_row_command=0x22, data_as_commands=True,
-                         set_vertical_scroll=0xd3, brightness_command=0x81,
-                         single_byte_bounds=True)
+            init_sequence[25] = 0x02  # patch com configuration
+        super().__init__(
+            bus,
+            init_sequence,
+            **kwargs,
+            color_depth=1,
+            grayscale=True,
+            pixels_in_byte_share_row=False,
+            set_column_command=0x21,
+            set_row_command=0x22,
+            data_as_commands=True,
+            set_vertical_scroll=0xD3,
+            brightness_command=0x81,
+            single_byte_bounds=True,
+        )
