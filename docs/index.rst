@@ -34,7 +34,7 @@ Table of Contents
     Monochrome 128x32 I2C OLED <https://www.adafruit.com/product/931>
     Monochrome 0.96" 128x64 OLED <https://www.adafruit.com/product/326>
     Monochrome 128x32 SPI OLED  <https://www.adafruit.com/product/661>
-    Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900> s
+    Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>
 
 .. toctree::
     :caption: Other Links
