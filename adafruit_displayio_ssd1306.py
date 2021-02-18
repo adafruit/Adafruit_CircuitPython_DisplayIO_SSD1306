@@ -48,10 +48,10 @@ _INIT_SEQUENCE = (
     b"\xda\x01\x12"  # Set com configuration
     b"\xdb\x01\x40"  # Set vcom configuration
     b"\x8d\x01\x14"  # Enable charge pump
-    b"\xAF\x00\x00"  # DISPLAY_ON
+    b"\xAF\x00"  # DISPLAY_ON
 )
 
-# pylint: disable=too-few-public-methods
+
 class SSD1306(displayio.Display):
     """SSD1306 driver"""
 
@@ -78,3 +78,33 @@ class SSD1306(displayio.Display):
             brightness_command=0x81,
             single_byte_bounds=True,
         )
+        self._is_awake = True  # Display starts in active state (_INIT_SEQUENCE)
+
+    @property
+    def is_awake(self):
+        """
+        The power state of the display. (read-only)
+
+        True if the display is active, False if in sleep mode.
+        """
+        return self._is_awake
+
+    def sleep(self):
+        """
+        Put display into sleep mode
+
+        Display uses < 10uA in sleep mode
+        Display remembers display data and operation mode active prior to sleeping
+        MP can access (update) the built-in display RAM
+        """
+        if self._is_awake:
+            self.bus.send(int(0xAE), "")  # 0xAE = display off, sleep mode
+            self._is_awake = False
+
+    def wake(self):
+        """
+        Wake display from sleep mode
+        """
+        if not self._is_awake:
+            self.bus.send(int(0xAF), "")  # 0xAF = display on
+            self._is_awake = True
