@@ -48,7 +48,7 @@ _INIT_SEQUENCE = (
     b"\xda\x01\x12"  # Set com configuration
     b"\xdb\x01\x40"  # Set vcom configuration
     b"\x8d\x01\x14"  # Enable charge pump
-    b"\xAF\x00\x00"  # DISPLAY_ON
+    b"\xAF\x00"  # DISPLAY_ON
 )
 
 # pylint: disable=too-few-public-methods
