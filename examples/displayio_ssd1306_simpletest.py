@@ -34,7 +34,7 @@ BORDER = 5
 display = adafruit_displayio_ssd1306.SSD1306(display_bus, width=WIDTH, height=HEIGHT)
 
 # Make the display context
-splash = displayio.Group(max_size=10)
+splash = displayio.Group()
 display.show(splash)
 
 color_bitmap = displayio.Bitmap(WIDTH, HEIGHT, 1)
