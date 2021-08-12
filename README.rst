@@ -1,7 +1,7 @@
 Introduction
 ============
 
-.. image:: https://readthedocs.org/projects/adafruit-circuitpython-displayio_ssd1306/badge/?version=latest
+.. image:: https://readthedocs.org/projects/adafruit-circuitpython-displayio-ssd1306/badge/?version=latest
     :target: https://circuitpython.readthedocs.io/projects/displayio_ssd1306/en/latest/
     :alt: Documentation Status
 
@@ -15,14 +15,15 @@ Introduction
 
 DisplayIO driver for SSD1306 monochrome displays. DisplayIO drivers enable terminal output
 
-For the framebuf based driver see `Adafruit CircuitPython SSD1306 <https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/>`_.
+For the framebuf based driver see
+`Adafruit CircuitPython SSD1306 <https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/>`_.
 
 
 Dependencies
 =============
 This driver depends on:
 
-* `Adafruit CircuitPython Version 5+ <https://github.com/adafruit/circuitpython>`_
+* `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
@@ -30,11 +31,9 @@ This is easily achieved by downloading
 
 Installing from PyPI
 =====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
 
 On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/adafruit-circuitpython-displayio_ssd1306/>`_. To install for current user:
+PyPI <https://pypi.org/project/adafruit-circuitpython-displayio-ssd1306/>`_. To install for current user:
 
 .. code-block:: shell
 
@@ -86,4 +85,5 @@ before contributing to help this project stay welcoming.
 Documentation
 =============
 
-For information on building library documentation, please check out `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
+For information on building library documentation, please check out `this guide
+<https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
