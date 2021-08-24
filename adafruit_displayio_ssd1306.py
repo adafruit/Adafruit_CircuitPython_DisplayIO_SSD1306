@@ -53,7 +53,14 @@ _INIT_SEQUENCE = (
 
 
 class SSD1306(displayio.Display):
-    """SSD1306 driver"""
+    """
+    SSD1306 driver
+
+    :param int width: The width of the display
+    :param int height: The height of the display
+    :param int rotation: The rotation of the display in degrees. Default is 0. Must be one of
+        (0, 90, 180, 270)
+    """
 
     def __init__(self, bus, **kwargs):
         # Patch the init sequence for 32 pixel high displays.
@@ -74,7 +81,6 @@ class SSD1306(displayio.Display):
             set_column_command=0x21,
             set_row_command=0x22,
             data_as_commands=True,
-            set_vertical_scroll=0xD3,
             brightness_command=0x81,
             single_byte_bounds=True,
         )
@@ -85,17 +91,18 @@ class SSD1306(displayio.Display):
         """
         The power state of the display. (read-only)
 
-        True if the display is active, False if in sleep mode.
+        `True` if the display is active, `False` if in sleep mode.
+
+        :type: bool
         """
         return self._is_awake
 
     def sleep(self):
         """
-        Put display into sleep mode
+        Put display into sleep mode.
 
-        Display uses < 10uA in sleep mode
-        Display remembers display data and operation mode active prior to sleeping
-        MP can access (update) the built-in display RAM
+        Display uses < 10uA in sleep mode. Display remembers display data and operation mode
+        active prior to sleeping. MP can access (update) the built-in display RAM.
         """
         if self._is_awake:
             self.bus.send(int(0xAE), "")  # 0xAE = display off, sleep mode
