@@ -75,6 +75,11 @@ Usage Example
     display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset, baudrate=1000000)
     display = adafruit_displayio_ssd1306.SSD1306(display_bus, width=128, height=64)
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/displayio_ssd1306/en/latest/>`_.
+
 Contributing
 ============
 
