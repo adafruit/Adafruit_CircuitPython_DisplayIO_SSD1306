@@ -113,5 +113,5 @@ class SSD1306(displayio.Display):
         Wake display from sleep mode
         """
         if not self._is_awake:
-            self.bus.send(int(0xAF), b"")  # 0xAF = display on
+            self.bus.send(0xAF, b"")  # 0xAF = display on
             self._is_awake = True
