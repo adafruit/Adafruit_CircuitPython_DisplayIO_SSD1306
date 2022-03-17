@@ -105,7 +105,7 @@ class SSD1306(displayio.Display):
         active prior to sleeping. MP can access (update) the built-in display RAM.
         """
         if self._is_awake:
-            self.bus.send(int(0xAE), b"")  # 0xAE = display off, sleep mode
+            self.bus.send(0xAE, b"")  # 0xAE = display off, sleep mode
             self._is_awake = False
 
     def wake(self):
