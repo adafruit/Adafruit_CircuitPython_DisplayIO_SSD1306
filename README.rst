@@ -13,6 +13,10 @@ Introduction
     :target: https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306/actions/
     :alt: Build Status
 
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: Code Style: Black
+
 DisplayIO driver for SSD1306 monochrome displays. DisplayIO drivers enable terminal output
 
 For the framebuf based driver see
