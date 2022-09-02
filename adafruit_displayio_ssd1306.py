@@ -31,6 +31,11 @@ Implementation Notes
 
 import displayio
 
+try:
+    from typing import Union
+except ImportError:
+    pass
+
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306.git"
 
@@ -62,7 +67,9 @@ class SSD1306(displayio.Display):
         (0, 90, 180, 270)
     """
 
-    def __init__(self, bus, **kwargs):
+    def __init__(
+        self, bus: Union[displayio.Fourwire, displayio.I2CDisplay], **kwargs
+    ) -> None:
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
@@ -87,7 +94,7 @@ class SSD1306(displayio.Display):
         self._is_awake = True  # Display starts in active state (_INIT_SEQUENCE)
 
     @property
-    def is_awake(self):
+    def is_awake(self) -> bool:
         """
         The power state of the display. (read-only)
 
@@ -97,7 +104,7 @@ class SSD1306(displayio.Display):
         """
         return self._is_awake
 
-    def sleep(self):
+    def sleep(self) -> None:
         """
         Put display into sleep mode.
 
@@ -108,7 +115,7 @@ class SSD1306(displayio.Display):
             self.bus.send(0xAE, b"")  # 0xAE = display off, sleep mode
             self._is_awake = False
 
-    def wake(self):
+    def wake(self) -> None:
         """
         Wake display from sleep mode
         """
