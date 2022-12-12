@@ -40,16 +40,16 @@ inner_palette[0] = 0x000000  # Black
 inner_sprite = displayio.TileGrid(inner_bitmap, pixel_shader=inner_palette, x=1, y=1)
 splash.append(inner_sprite)
 
-text = "Hello"
-text_area = label.Label(terminalio.FONT, text=text, color=0xFFFFFF, x=2, y=6)
+TEXT1 = "Hello"
+text_area = label.Label(terminalio.FONT, text=TEXT1, color=0xFFFFFF, x=2, y=6)
 splash.append(text_area)
 
-text = "World"
-text_area = label.Label(terminalio.FONT, text=text, color=0xFFFFFF, x=32, y=15)
+TEXT2 = "World"
+text_area = label.Label(terminalio.FONT, text=TEXT2, color=0xFFFFFF, x=32, y=15)
 splash.append(text_area)
 
-text = "9876543210"
-text_area = label.Label(terminalio.FONT, text=text, color=0xFFFFFF, x=2, y=24)
+TEXT3 = "9876543210"
+text_area = label.Label(terminalio.FONT, text=TEXT3, color=0xFFFFFF, x=2, y=24)
 splash.append(text_area)
 
 while True:
