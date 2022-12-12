@@ -80,11 +80,13 @@ class SSD1306(displayio.Display):
             height = kwargs["width"]
             width = kwargs["height"]
         init_sequence[16] = height - 1  # patch mux ratio
-        if height == 32 and width == 64: # FIX ME
+        if height == 32 and width == 64:  # FIX ME
             init_sequence[16] = 64 - 1  # FORCED for 64x32 because it fail with formula
         if (height == 32 or height == 16) and (width != 64):
             init_sequence[25] = 0x02  # patch com configuration
-        col_offset = 0 if width == 128 else (128 - width) // 2 # https://github.com/micropython/micropython/pull/7411
+        col_offset = (
+            0 if width == 128 else (128 - width) // 2
+        )  # https://github.com/micropython/micropython/pull/7411
         super().__init__(
             bus,
             init_sequence,
