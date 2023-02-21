@@ -21,6 +21,8 @@ Implementation Notes
 * `Monochrome 0.96" 128x64 OLED graphic display <https://www.adafruit.com/product/326>`_
 * `Monochrome 128x32 SPI OLED graphic display <https://www.adafruit.com/product/661>`_
 * `Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>`_
+* Monochrome 0.49" 64x32 I2C OLED graphic display
+* Might work on other sub-128 width display: Dots 72x40, 64x48, 96x16
 
 **Software and Dependencies:**
 
@@ -73,15 +75,24 @@ class SSD1306(displayio.Display):
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
+        width = kwargs["width"]
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
             height = kwargs["width"]
+            width = kwargs["height"]
         init_sequence[16] = height - 1  # patch mux ratio
-        if kwargs["height"] == 32:
+        if height == 32 and width == 64:  # Make sure this only apply to that resolution
+            init_sequence[16] = 64 - 1  # FORCED for 64x32 because it fail with formula
+        if height in (32, 16) and width != 64:
             init_sequence[25] = 0x02  # patch com configuration
+        col_offset = (
+            0 if width == 128 else (128 - width) // 2
+        )  # https://github.com/micropython/micropython/pull/7411
         super().__init__(
             bus,
             init_sequence,
             **kwargs,
+            colstart=col_offset,
+            rowstart=col_offset,
             color_depth=1,
             grayscale=True,
             pixels_in_byte_share_row=False,
