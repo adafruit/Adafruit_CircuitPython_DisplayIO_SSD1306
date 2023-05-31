@@ -8,9 +8,9 @@ import board
 import displayio
 import busio
 import terminalio
-import adafruit_displayio_ssd1306 as ssd1306
 from adafruit_display_text import label
 from adafruit_bme280 import basic as adafruit_bme280
+import adafruit_displayio_ssd1306 as ssd1306
 
 # Reinitalizes display upon any soft reboot or hard reset
 displayio.release_displays()
