@@ -84,7 +84,7 @@ layer1.append(hello_label)
 layer1.append(temp_label)
 layer1.append(humidity_label)
 layer1.append(pressure_label)
-display.show(layer1)
+display.root_group = layer1
 
 while True:
     # Convert temp C to F
