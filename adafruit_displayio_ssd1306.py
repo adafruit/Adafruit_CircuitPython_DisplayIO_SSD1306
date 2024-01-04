@@ -87,12 +87,15 @@ class SSD1306(displayio.Display):
         col_offset = (
             0 if width == 128 else (128 - width) // 2
         )  # https://github.com/micropython/micropython/pull/7411
+        row_offset = (
+            col_offset if (kwargs["height"] != 48 or kwargs["width"] != 64) else 0
+        ) # fix for 0.66" 64x48 OLED
         super().__init__(
             bus,
             init_sequence,
             **kwargs,
             colstart=col_offset,
-            rowstart=col_offset,
+            rowstart=row_offset,
             color_depth=1,
             grayscale=True,
             pixels_in_byte_share_row=False,
