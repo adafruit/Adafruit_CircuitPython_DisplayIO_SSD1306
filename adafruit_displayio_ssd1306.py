@@ -22,6 +22,7 @@ Implementation Notes
 * `Monochrome 128x32 SPI OLED graphic display <https://www.adafruit.com/product/661>`_
 * `Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>`_
 * Monochrome 0.49" 64x32 I2C OLED graphic display
+* Monochrome 0.66" 64x48 I2C OLED graphic display (like https://www.amazon.com/gp/product/B07QF7QK6P)
 * Might work on other sub-128 width display: Dots 72x40, 64x48, 96x16
 
 **Software and Dependencies:**
