@@ -22,6 +22,7 @@ Implementation Notes
 * `Monochrome 128x32 SPI OLED graphic display <https://www.adafruit.com/product/661>`_
 * `Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>`_
 * Monochrome 0.49" 64x32 I2C OLED graphic display
+* Monochrome 0.66" 64x48 I2C OLED graphic display (eg https://www.amazon.com/gp/product/B07QF7QK6P)
 * Might work on other sub-128 width display: Dots 72x40, 64x48, 96x16
 
 **Software and Dependencies:**
@@ -87,12 +88,15 @@ class SSD1306(displayio.Display):
         col_offset = (
             0 if width == 128 else (128 - width) // 2
         )  # https://github.com/micropython/micropython/pull/7411
+        row_offset = (
+            col_offset if (kwargs["height"] != 48 or kwargs["width"] != 64) else 0
+        )  # fix for 0.66" 64x48 OLED
         super().__init__(
             bus,
             init_sequence,
             **kwargs,
             colstart=col_offset,
-            rowstart=col_offset,
+            rowstart=row_offset,
             color_depth=1,
             grayscale=True,
             pixels_in_byte_share_row=False,
