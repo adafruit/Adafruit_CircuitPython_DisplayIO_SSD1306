@@ -31,14 +31,15 @@ Implementation Notes
   https://github.com/adafruit/circuitpython/releases
 
 """
-
-import busdisplay
 try:
     from typing import Union
-    import fourwire
-    import i2cdisplaybus
+    from busdisplay import BusDisplay
+    from fourwire import FourWire
+    from i2cdisplaybus import I2CDisplayBus
 except ImportError:
-    pass
+    from displayio import FourWire
+    from displayio import I2CDisplay as I2CDisplayBus
+    from displayio import Display as BusDisplay
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306.git"
@@ -61,7 +62,7 @@ _INIT_SEQUENCE = (
 )
 
 
-class SSD1306(busdisplay.BusDisplay):
+class SSD1306(BusDisplay):
     """
     SSD1306 driver
 
@@ -71,9 +72,7 @@ class SSD1306(busdisplay.BusDisplay):
         (0, 90, 180, 270)
     """
 
-    def __init__(
-        self, bus: Union[fourwire.FourWire, i2cdisplaybus.I2CDisplayBus], **kwargs
-    ) -> None:
+    def __init__(self, bus: Union[FourWire, I2CDisplayBus], **kwargs) -> None:
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
