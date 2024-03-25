@@ -13,8 +13,12 @@ import displayio
 # Remove after 8.x.x is no longer a supported release.
 try:
     from i2cdisplaybus import I2CDisplayBus
+
+    # from fourwire import FourWire
 except ImportError:
     from displayio import I2CDisplay as I2CDisplayBus
+
+    # from displayio import FourWire
 
 import terminalio
 from adafruit_display_text import label
@@ -33,7 +37,7 @@ display_bus = I2CDisplayBus(i2c, device_address=0x3C, reset=oled_reset)
 # spi = board.SPI()
 # oled_cs = board.D5
 # oled_dc = board.D6
-# display_bus = displayio.FourWire(spi, command=oled_dc, chip_select=oled_cs,
+# display_bus = FourWire(spi, command=oled_dc, chip_select=oled_cs,
 #                                 reset=oled_reset, baudrate=1000000)
 
 WIDTH = 128
