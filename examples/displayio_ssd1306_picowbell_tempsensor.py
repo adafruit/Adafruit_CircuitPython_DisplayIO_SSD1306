@@ -6,6 +6,14 @@
 import time
 import board
 import displayio
+
+# Compatibility with both CircuitPython 8.x.x and 9.x.x.
+# Remove after 8.x.x is no longer a supported release.
+try:
+    from i2cdisplaybus import I2CDisplayBus
+except ImportError:
+    from displayio import I2CDisplay as I2CDisplayBus
+
 import busio
 import terminalio
 from adafruit_display_text import label
@@ -29,7 +37,7 @@ ssd_width = 128
 ssd_height = 32
 
 # Ensure the physical address of your SSD1306 is set here:
-ssd_bus = displayio.I2CDisplay(i2c0, device_address=0x3C)
+ssd_bus = I2CDisplayBus(i2c0, device_address=0x3C)
 display = ssd1306.SSD1306(ssd_bus, width=ssd_width, height=ssd_height)
 
 # Manually set your sea_level_pressure to your area
