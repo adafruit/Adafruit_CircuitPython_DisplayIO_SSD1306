@@ -9,6 +9,14 @@ Customized version of displayio_ssd1306_simpletest.py for 64x32
 
 import board
 import displayio
+
+# Compatibility with both CircuitPython 8.x.x and 9.x.x.
+# Remove after 8.x.x is no longer a supported release.
+try:
+    from i2cdisplaybus import I2CDisplayBus
+except ImportError:
+    from displayio import I2CDisplay as I2CDisplayBus
+
 import terminalio
 from adafruit_display_text import label
 import adafruit_displayio_ssd1306
@@ -18,7 +26,7 @@ displayio.release_displays()
 i2c = board.I2C()  # uses board.SCL and board.SDA
 # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
 
-display_bus = displayio.I2CDisplay(i2c, device_address=0x3C)
+display_bus = I2CDisplayBus(i2c, device_address=0x3C)
 display = adafruit_displayio_ssd1306.SSD1306(display_bus, width=64, height=32)
 
 # Make the display context
