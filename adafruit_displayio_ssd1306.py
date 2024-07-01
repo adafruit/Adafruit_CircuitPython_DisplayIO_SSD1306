@@ -32,13 +32,13 @@ Implementation Notes
 
 """
 try:
-    _Blinka = True
+    __blinka__ = True
     from typing import Union
     from busdisplay import BusDisplay
     from fourwire import FourWire
     from i2cdisplaybus import I2CDisplayBus
 except ImportError:
-    _Blinka = False
+    __blinka__ = False
     from displayio import FourWire
     from displayio import I2CDisplay as I2CDisplayBus
     from displayio import Display as BusDisplay
@@ -129,7 +129,7 @@ class SSD1306(BusDisplay):
         active prior to sleeping. MP can access (update) the built-in display RAM.
         """
         if self._is_awake:
-            if _Blinka:
+            if __blinka__:
                 self.bus.send(0xAE, [])  # 0xAE = display off, sleep mode
             else:
                 self.bus.send(0xAE, b"")  # 0xAE = display off, sleep mode
@@ -140,7 +140,7 @@ class SSD1306(BusDisplay):
         Wake display from sleep mode
         """
         if not self._is_awake:
-            if _Blinka:
+            if __blinka__:
                 self.bus.send(0xAF, [])  # 0xAF = display on
             else:
                 self.bus.send(0xAF, b"")  # 0xAF = display on
