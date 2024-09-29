@@ -89,13 +89,21 @@ class SSD1306(BusDisplay):
         col_offset = (
             0 if width == 128 else (128 - width) // 2
         )  # https://github.com/micropython/micropython/pull/7411
-        row_offset = (
-            col_offset if (kwargs["height"] != 48 or kwargs["width"] != 64) else 0
-        )  # fix for 0.66" 64x48 OLED
+        row_offset = col_offset
+
+        # for 64x48
+        if kwargs["height"] == 48 and kwargs["width"] == 64:
+            col_offset = (128 - kwargs["width"]) // 2
+            row_offset = 0
+
+            if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
+                init_sequence[16] = kwargs["height"] - 1
+                kwargs["height"] = height
+                kwargs["width"] = width
 
         # for 72x40
         if kwargs["height"] == 40 and kwargs["width"] == 72:
-            col_offset = 28
+            col_offset = (128 - kwargs["width"]) // 2
             row_offset = 0
 
             # add Internal IREF Setting for the 0.42 OLED as per
