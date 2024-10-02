@@ -23,6 +23,8 @@ Implementation Notes
 * `Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>`_
 * Monochrome 0.49" 64x32 I2C OLED graphic display
 * Monochrome 0.66" 64x48 I2C OLED graphic display (eg https://www.amazon.com/gp/product/B07QF7QK6P)
+* Miniature 0.42" OLED 72x40 Display with Resin Lens
+  * https://tindie.com/products/questwise-ventures/miniature-042-oled-72x40-display-with-resin-lens
 * Might work on other sub-128 width display: Dots 72x40, 64x48, 96x16
 
 **Software and Dependencies:**
@@ -88,9 +90,35 @@ class SSD1306(BusDisplay):
         col_offset = (
             0 if width == 128 else (128 - width) // 2
         )  # https://github.com/micropython/micropython/pull/7411
-        row_offset = (
-            col_offset if (kwargs["height"] != 48 or kwargs["width"] != 64) else 0
-        )  # fix for 0.66" 64x48 OLED
+        row_offset = col_offset
+
+        # for 64x48
+        if kwargs["height"] == 48 and kwargs["width"] == 64:
+            col_offset = (128 - kwargs["width"]) // 2
+            row_offset = 0
+
+            if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
+                init_sequence[16] = kwargs["height"] - 1
+                kwargs["height"] = height
+                kwargs["width"] = width
+
+        # for 72x40
+        if kwargs["height"] == 40 and kwargs["width"] == 72:
+            col_offset = (128 - kwargs["width"]) // 2
+            row_offset = 0
+
+            # add Internal IREF Setting for the 0.42 OLED as per
+            # https://github.com/olikraus/u8g2/issues/1047 and
+            # SSD1306B rev 1.1 datasheet at
+            # https://www.buydisplay.com/download/ic/SSD1306.pdf
+            seq_length = len(init_sequence) - 2
+            init_sequence[seq_length:seq_length] = bytearray(b"\xad\x01\x30")
+
+            if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
+                init_sequence[16] = kwargs["height"] - 1
+                kwargs["height"] = height
+                kwargs["width"] = width
+
         super().__init__(
             bus,
             init_sequence,
