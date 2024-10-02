@@ -23,7 +23,8 @@ Implementation Notes
 * `Adafruit FeatherWing OLED - 128x32 OLED <https://www.adafruit.com/product/2900>`_
 * Monochrome 0.49" 64x32 I2C OLED graphic display
 * Monochrome 0.66" 64x48 I2C OLED graphic display (eg https://www.amazon.com/gp/product/B07QF7QK6P)
-* Miniature 0.42" OLED 72x40 Display with Resin Lens (https://www.tindie.com/products/questwise-ventures/miniature-042-oled-72x40-display-with-resin-lens/)
+* Miniature 0.42" OLED 72x40 Display with Resin Lens
+  * https://tindie.com/products/questwise-ventures/miniature-042-oled-72x40-display-with-resin-lens
 * Might work on other sub-128 width display: Dots 72x40, 64x48, 96x16
 
 **Software and Dependencies:**
