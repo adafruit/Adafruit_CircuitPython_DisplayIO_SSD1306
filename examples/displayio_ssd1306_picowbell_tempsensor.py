@@ -4,6 +4,7 @@
 # Coded for Circuit Python 8.1
 
 import time
+
 import board
 import displayio
 
@@ -16,8 +17,9 @@ except ImportError:
 
 import busio
 import terminalio
-from adafruit_display_text import label
 from adafruit_bme280 import basic as adafruit_bme280
+from adafruit_display_text import label
+
 import adafruit_displayio_ssd1306 as ssd1306
 
 # Reinitalizes display upon any soft reboot or hard reset
