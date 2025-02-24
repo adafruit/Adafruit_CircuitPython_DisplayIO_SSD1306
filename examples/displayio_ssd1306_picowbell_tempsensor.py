@@ -6,19 +6,12 @@
 import time
 
 import board
-import displayio
-
-# Compatibility with both CircuitPython 8.x.x and 9.x.x.
-# Remove after 8.x.x is no longer a supported release.
-try:
-    from i2cdisplaybus import I2CDisplayBus
-except ImportError:
-    from displayio import I2CDisplay as I2CDisplayBus
-
 import busio
+import displayio
 import terminalio
 from adafruit_bme280 import basic as adafruit_bme280
 from adafruit_display_text import label
+from i2cdisplaybus import I2CDisplayBus
 
 import adafruit_displayio_ssd1306 as ssd1306
 
